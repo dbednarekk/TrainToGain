@@ -10,10 +10,6 @@ Social web application for creating, sharing and managing your workout routines 
 - PostgreSQL
 - Poetry
 - Pytest
-- AWS S3 bucket
-- TotalVirus virus scanner
-- SendGrid email provider
-- Swagger 
 
 ## Setup
 
@@ -27,5 +23,5 @@ The application uses persistent storage for Postgres which is managed by docker.
 The application is ready to go, check http://localhost:8000/doc/swagger/ or http://localhost:8000/doc/redoc/ for interactive API documentation.
 
 ## TBD
-- [ ] Frontend part of application is still under development, use interactive docs for testing functionality.
+- [ ] Frontend part of application is still under development.
 
