@@ -10,6 +10,9 @@ Social web application for creating, sharing and managing your workout routines 
 - PostgreSQL
 - Poetry
 - Pytest
+- ReactJS
+- Redux
+- Bootstrap
 
 ## Setup
 
