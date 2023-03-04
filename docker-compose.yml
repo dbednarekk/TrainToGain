@@ -1,0 +1,58 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: /docker/backend/Dockerfile
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python manage.py migrate
+        python manage.py runserver 0.0.0.0:8000
+    networks:
+      - custom_network
+    ports:
+      - "8000:8000"
+    restart: always
+  frontend:
+    build:
+      context: .
+      dockerfile: /docker/frontend/Dockerfile
+    depends_on:
+      - backend
+    env_file:
+      - .env
+    command:
+      - /bin/bash
+      - -c
+      - |
+        npm start
+    networks:
+      - custom_network
+    ports:
+      - "3000:3000"
+    restart: always
+  postgres:
+    image: postgres:15
+    networks:
+      - custom_network
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - "train-db:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+networks:
+  custom_network:
+    name: custom_network
+
+volumes:
+  train-db:
