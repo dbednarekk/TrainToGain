@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'TrainToGain.apps.workouts.apps.WorkoutsConfig',
-    'TrainToGain.apps.users.apps.UsersConfig',
     'rest_framework',
     'rest_framework_simplejwt',
+
+    'TrainToGain.apps.users',
+    'TrainToGain.apps.workouts',
 
 ]
 
