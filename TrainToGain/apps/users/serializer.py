@@ -6,7 +6,7 @@ from .models import Entity, UserDetails
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDetails
-        fields = ["first_name", "last_name", "age", "height", "weight"]
+        fields = ["first_name", "last_name", "age", "height", "weight", "picture"]
 
 
 class EntitySerializer(serializers.ModelSerializer):

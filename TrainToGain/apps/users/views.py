@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from TrainToGain.apps.users.models import Entity
@@ -23,3 +24,16 @@ class UserViewSet(viewsets.ModelViewSet):
         self.perform_update(serializer)
 
         return Response(serializer.data)
+
+    @action(detail=True, methods=["PATCH"], url_path="profile-image")
+    def upload_profile_image(self, request, login=None):
+        """Upload profile image and update user information"""
+        user = self.get_object()
+        serializer = UserDetailsSerializer(
+            user.user_details, data={'picture': request.data['picture']}, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(status=204)
+
+    # TODO Add password reset and email confirmation
+
