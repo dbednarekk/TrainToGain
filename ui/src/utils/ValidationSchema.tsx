@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const singUpValidationSchema = yup.object({
+export const singUpValidationSchema = yup.object({
   firstName: yup
     .string()
     .required("First Name is required")
@@ -55,4 +55,16 @@ const singUpValidationSchema = yup.object({
     .max(500, "Weight must be less than 500"),
 });
 
-export default singUpValidationSchema;
+export const signInValidationSchema = yup.object({
+  login: yup
+    .string()
+    .required("Login is required")
+    .min(3, "Login must be at least 3 characters")
+    .max(50, "Login must be less than 50 characters")
+    .matches(/^[a-zA-Z0-9]+$/, "Login must contain only letters and numbers"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .max(50, "Password must be less than 50 characters"),
+});

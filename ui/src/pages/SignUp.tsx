@@ -1,25 +1,24 @@
-import React from "react";
-import CustomField from "../components/CustomField";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {
   Avatar,
   Box,
   Grid,
-  IconButton,
   InputAdornment,
   Link,
   Typography,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import CustomButton from "../components/CustomButton";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
 import { useFormik } from "formik";
-import singUpValidationSchema from "../utils/ValidationSchema";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { post } from "../utils/ApiCalls";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomButton from "../components/CustomButton";
+import CustomField from "../components/CustomField";
+import { showPasswordInputProps } from "../components/ShowPasswordProps";
+import { post } from "../utils/ApiCalls";
+import { singUpValidationSchema } from "../utils/ValidationSchema";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -68,20 +67,6 @@ function SignUp() {
       handleSignUp(values);
     },
   });
-
-  const showPasswordInputProps = {
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visibility"
-          onClick={handleClickShowPassword}
-          edge="end"
-        >
-          {showPassword ? <VisibilityOff /> : <Visibility />}
-        </IconButton>
-      </InputAdornment>
-    ),
-  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -171,7 +156,10 @@ function SignUp() {
                 helperText={formik.touched.password && formik.errors.password}
                 type={showPassword ? "text" : "password"}
                 fullWidth
-                InputProps={showPasswordInputProps}
+                InputProps={showPasswordInputProps(
+                  showPassword,
+                  handleClickShowPassword
+                )}
               />
             </Grid>
             <Grid item xs={12}>

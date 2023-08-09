@@ -9,8 +9,6 @@ from TrainToGain.apps.users.serializer import EntitySerializer, UserDetailsSeria
 class UserViewSet(viewsets.ModelViewSet):
     """View for user CRUD operations"""
 
-    lookup_url_kwarg = "login"
-    lookup_field = "login"
     serializer_class = EntitySerializer
 
     def get_queryset(self):
@@ -36,4 +34,3 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(status=204)
 
     # TODO Add password reset and email confirmation
-

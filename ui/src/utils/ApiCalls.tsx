@@ -35,3 +35,9 @@ export async function post(url: string, data: string, token?: string) {
     });
   }
 }
+
+export async function getSelfInfo(token: string, id: number) {
+  return await axios.get(DEFAULT_URL + `users/${id}/`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
