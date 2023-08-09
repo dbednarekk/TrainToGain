@@ -4,8 +4,8 @@ interface ContainedButtonProps {
   variant?: "contained" | "text" | "outlined";
   color?: "primary" | "secondary" | "error" | "inherit" | "success" | "warning";
   text: string;
-  onClick: () => void;
-  [propName: string]: any;
+  onClick?: () => void;
+  [rest: string]: any;
 }
 
 function ContainedButton({
