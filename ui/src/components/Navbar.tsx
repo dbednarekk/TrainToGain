@@ -7,6 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar() {
   const navigate = useNavigate();
+  const isLogged = localStorage.getItem("token") ? true : false;
+  const login = localStorage.getItem("login");
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar color="transparent" elevation={0} position="static">
@@ -15,18 +23,29 @@ export default function ButtonAppBar() {
             Train to Gain
           </Typography>
           <Box>
-            <CustomButton
-              text="LOGIN"
-              onClick={() => {}}
-              sx={{ marginRight: "5px" }}
-              size="large"
-            />
-            <CustomButton
-              variant="outlined"
-              text="SIGN UP"
-              onClick={() => navigate("/signup")}
-              size="large"
-            />
+            {isLogged ? (
+              <Box style={{ display: "flex", alignItems: "center" }}>
+                <Typography variant="h6" mr={2}>
+                  {login}
+                </Typography>
+                <CustomButton text="LOGOUT" onClick={handleLogout} />
+              </Box>
+            ) : (
+              <>
+                <CustomButton
+                  text="LOGIN"
+                  onClick={() => navigate("/signin")}
+                  sx={{ marginRight: "5px" }}
+                  size="large"
+                />
+                <CustomButton
+                  variant="outlined"
+                  text="SIGN UP"
+                  onClick={() => navigate("/signup")}
+                  size="large"
+                />
+              </>
+            )}
           </Box>
         </Toolbar>
       </AppBar>

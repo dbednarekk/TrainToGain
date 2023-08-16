@@ -24,13 +24,16 @@ function SignIn() {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const storeLoginInfo = (res: any) => {
+  const storeLoginInfo = async (res: any) => {
     const claims = atob(res.data.access.split(".")[1]);
-    getSelfInfo(res.data.access, JSON.parse(claims).user_id).then((res) => {
-      console.log(res);
-      localStorage.setItem("login", res.data.login);
-    });
+    await getSelfInfo(res.data.access, JSON.parse(claims).user_id).then(
+      (res) => {
+        localStorage.setItem("login", res.data.login);
+      }
+    );
     localStorage.setItem("token", res.data.access);
+    toast.success("Successful action");
+    navigate("/");
   };
 
   const handleSignIn = (payload: any) => {
@@ -41,8 +44,6 @@ function SignIn() {
     post("token/", jsonData)
       .then((res) => {
         storeLoginInfo(res);
-        toast.success("Successful action");
-        navigate("/");
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -126,12 +127,12 @@ function SignIn() {
 
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link href="/password-reset" variant="body2">
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
