@@ -8,7 +8,7 @@ from TrainToGain.apps.users.managers import CustomEntityManager
 class Entity(AbstractBaseUser):
     """Base model for every user"""
     login = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=50, validators=[RegexValidator(
+    password = models.CharField(validators=[RegexValidator(
         regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*\\W).{8,50}$")])
     email = models.EmailField(max_length=50, unique=True)
     active = models.BooleanField(default=True)

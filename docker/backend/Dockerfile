@@ -1,9 +1,12 @@
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY ../../requirements.txt .
-RUN pip install -r requirements.txt
+COPY ../../poetry.lock .
+COPY ../../pyproject.toml .
+RUN pip install poetry
+RUN poetry install --no-root
 
-COPY ../.. /app/
+COPY ../../TrainToGain ./TrainToGain
+COPY ../../manage.py .
 
