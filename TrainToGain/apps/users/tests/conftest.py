@@ -22,5 +22,5 @@ def user_schema():
 
 
 @pytest.fixture(scope="function")
-def create_user():
-    return UserFactory()
+def user():
+    return UserFactory.create()

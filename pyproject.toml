@@ -17,8 +17,11 @@ psycopg2-binary = "^2.9.9"
 django-configurations = "^2.5.1"
 load-dotenv = "^0.1.0"
 
-[tool.poetry.group.dev.dependencies]
-
+[tool.poetry.group.test.dependencies]
+pytest = "^8.2.2"
+faker = "^26.0.0"
+factory-boy = "^3.3.0"
+pytest-django = "^4.8.0"
 
 [build-system]
 requires = ["poetry-core"]
