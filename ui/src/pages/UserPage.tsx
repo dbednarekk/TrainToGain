@@ -13,7 +13,7 @@ interface TokenPayload {
 function UserPage() {
   const token = sessionStorage.getItem("token") || "";
   const decodedToken = decodeToken<TokenPayload>(token);
-  const [user, setUser] = useState();
+  const [, setUser] = useState();
 
   const GetSelfInfo = async () => {
     await getSelfInfo(token, decodedToken?.user_id).then((res) => {
@@ -31,12 +31,12 @@ function UserPage() {
       sx={{ bgcolor: "#f7f5f0" }}
     >
       <Navbar />
-      <Box>
+      <Box display="flex">
         <UserDrawer />
         <Box
           display="flex"
-          flexGrow="2"
-          position="relative"
+          flexGrow={2}
+          flexDirection="column"
           justifyContent="center"
           alignItems="center"
         >

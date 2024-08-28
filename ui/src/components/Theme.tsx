@@ -18,6 +18,9 @@ const theme = createTheme({
     },
     navbar: {
       main: "#ffffff",
+      light: "##ffffff",
+      dark: "##ffffff",
+      contrastText: "##ffffff",
     },
   },
 });

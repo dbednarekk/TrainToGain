@@ -48,10 +48,10 @@ function UserDrawer() {
       anchor="left"
       sx={{
         width: { sm: "200px", xs: "60px" },
-        position: "sticky",
+        display: "flex",
       }}
       PaperProps={{
-        sx: { width: { sm: "200px", xs: "60px" } },
+        sx: { width: { sm: "200px", xs: "60px" }, top: "auto" },
       }}
     >
       <List>
