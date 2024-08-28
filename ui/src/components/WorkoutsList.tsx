@@ -8,7 +8,7 @@ function WorkoutsList() {
       container
       justifyContent="center"
       alignItems="center"
-      spacing={2}
+      rowSpacing={8}
       sx={{
         mt: 2,
       }}

@@ -4,8 +4,8 @@ function WorkoutCard() {
   return (
     <Card
       sx={{
-        minWidth: 200,
-        minHeight: 400,
+        minWidth: { sm: 200, xs: 100 },
+        minHeight: { sm: 700, xs: 350 },
       }}
     >
       <CardContent>

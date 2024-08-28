@@ -24,12 +24,7 @@ function UserPage() {
     GetSelfInfo();
   }, []);
   return (
-    <Box
-      width="100vw"
-      display="flex"
-      flexDirection="column"
-      sx={{ bgcolor: "#f7f5f0" }}
-    >
+    <Box display="flex" flexDirection="column" sx={{ bgcolor: "#f7f5f0" }}>
       <Navbar />
       <Box display="flex">
         <UserDrawer />
