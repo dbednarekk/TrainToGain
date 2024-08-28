@@ -1,22 +1,20 @@
 import { Box } from "@mui/material";
+import GymImage from "../assets/images/bgimage.jpg";
 import Navbar from "../components/Navbar";
-import GymImage from "../assets/images/gym1.jpg";
-import Gym2Image from "../assets/images/wp2639541-gym-wallpaper-hd.jpg";
 function Home() {
   return (
-    <>
-      <Navbar></Navbar>
-
+    <Box height="100vh" width="100vw" display="flex" flexDirection="column">
+      <Navbar />
       <Box
         sx={{
-          margin: "5px",
-
-          opacity: "0.9",
+          opacity: "0.8",
+          backgroundImage: `url(${GymImage})`,
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+          height: "100%",
         }}
-      >
-        <img src={Gym2Image} alt="GymImage" width="100%" />
-      </Box>
-    </>
+      ></Box>
+    </Box>
   );
 }
 

@@ -1,16 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./css/index.css";
 import { ThemeProvider } from "@emotion/react";
-import theme from "./components/Theme.tsx";
+import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
+import App from "./App.tsx";
+import theme from "./components/Theme.tsx";
+import "./css/index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+  // <React.StrictMode>
+  <ThemeProvider theme={theme}>
+    <App />
     <ToastContainer
       position="bottom-left"
       autoClose={5000}
@@ -23,5 +21,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       pauseOnHover
       theme="colored"
     />
-  </React.StrictMode>
+  </ThemeProvider>
+  // </React.StrictMode>
 );

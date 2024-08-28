@@ -11,12 +11,12 @@ import {
 import { useFormik } from "formik";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import CustomButton from "../components/CustomButton";
 import CustomField from "../components/CustomField";
 import { showPasswordInputProps } from "../components/ShowPasswordProps";
-import { signInValidationSchema } from "../utils/ValidationSchema";
 import { getSelfInfo, post } from "../utils/ApiCalls";
-import { toast } from "react-toastify";
+import { signInValidationSchema } from "../utils/ValidationSchema";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -28,12 +28,12 @@ function SignIn() {
     const claims = atob(res.data.access.split(".")[1]);
     await getSelfInfo(res.data.access, JSON.parse(claims).user_id).then(
       (res) => {
-        localStorage.setItem("login", res.data.login);
+        sessionStorage.setItem("login", res.data.login);
       }
     );
-    localStorage.setItem("token", res.data.access);
+    sessionStorage.setItem("token", res.data.access);
     toast.success("Successful action");
-    navigate("/");
+    navigate("/user/UserPage");
   };
 
   const handleSignIn = (payload: any) => {

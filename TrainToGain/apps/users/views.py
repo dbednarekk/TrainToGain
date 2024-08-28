@@ -14,6 +14,12 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Entity.objects.all()
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(serializer.data, status=201)
+
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
         instance = self.get_object().user_details
@@ -23,7 +29,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    @action(detail=True, methods=["PATCH"], url_path="profile-image")
+    @action(detail=False, methods=["PATCH"], url_path="profile-image")
     def upload_profile_image(self, request, login=None):
         """Upload profile image and update user information"""
         user = self.get_object()
@@ -32,5 +38,3 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=204)
-
-    # TODO Add password reset and email confirmation

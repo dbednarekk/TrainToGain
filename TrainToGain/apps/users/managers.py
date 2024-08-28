@@ -11,10 +11,11 @@ class CustomEntityManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, login: str, password: str, email: str, user_details=None):
-        admin = self.model(login=login, email=email, user_details=user_details)
+    def create_superuser(self, login: str, password: str, email: str):
+        admin = self.model(login=login, email=email, user_details=None)
         admin.set_password(password)
         admin.is_admin = True
+        admin.active = True
         admin.save(using=self._db)
 
         return admin

@@ -18,14 +18,30 @@ class Entity(AbstractBaseUser):
                                 validators=[RegexValidator(regex=PasswordRegex.regex, message=PasswordRegex.message)])
     email = models.EmailField(max_length=50, unique=True, blank=False, null=False,
                               validators=[EmailValidator(message="Invalid email")])
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+
+    # Properties for compatibility with django admin
+    @property
+    def is_staff(self):
+        return self.is_admin
+
+    @property
+    def is_active(self):
+        return self.active
+
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return self.is_admin
+
     user_details = models.OneToOneField(
         'UserDetails', on_delete=models.CASCADE, null=True, blank=True)
 
     objects = CustomEntityManager()
     USERNAME_FIELD = 'login'
-    REQUIRED_FIELDS = ['password', 'email', 'user_details']
+    REQUIRED_FIELDS = ['password', 'email']
 
 
 class UserDetails(models.Model):

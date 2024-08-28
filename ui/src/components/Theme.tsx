@@ -1,5 +1,13 @@
 import { createTheme } from "@mui/material/styles";
+declare module "@mui/material/styles" {
+  interface Palette {
+    navbar: Palette["primary"];
+  }
 
+  interface PaletteOptions {
+    navbar?: PaletteOptions["primary"];
+  }
+}
 const theme = createTheme({
   palette: {
     primary: {
@@ -7,6 +15,9 @@ const theme = createTheme({
     },
     secondary: {
       main: "#c8dbef",
+    },
+    navbar: {
+      main: "#ffffff",
     },
   },
 });
