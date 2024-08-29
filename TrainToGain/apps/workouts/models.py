@@ -1,5 +1,7 @@
 from django.db import models
 
+from TrainToGain.apps.users.models import Entity
+
 
 class Exercise(models.Model):
     BODY_PARTS = [
@@ -24,20 +26,25 @@ class Exercise(models.Model):
     muscle_type = models.CharField(max_length=20, choices=BODY_PARTS)
     description = models.CharField(max_length=200, blank=True, null=True)
     picture = models.ImageField(upload_to='exercises/', blank=True, null=True)
-    createdBy = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name} {self.id}"
 
 
 class Workout(models.Model):
     name = models.CharField(max_length=50, unique=True)
     description = models.CharField(max_length=100, blank=True, null=True)
     exercises = models.ManyToManyField(
-        'Exercise', through='ExerciseDetails', blank=True)
-    createdBy = models.CharField(max_length=50, blank=True, null=True)
+        'Exercise', through='WorkoutDetails', blank=True)
+    duration = models.DurationField()
+    createdBy = models.ForeignKey(Entity, related_name="workouts", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name} {self.id}"
 
 
-class ExerciseDetails(models.Model):
-    workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
-    exercise = models.ForeignKey(Exercise, on_delete=models.CASCADE)
-    number_of_sets = models.PositiveIntegerField(blank=True, null=True)
+class WorkoutDetails(models.Model):
+    workout = models.ForeignKey(Workout, related_name="details", on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercise, related_name="details", on_delete=models.CASCADE)
     number_of_reps = models.PositiveIntegerField(blank=True, null=True)
     weight = models.PositiveIntegerField(blank=True, null=True)

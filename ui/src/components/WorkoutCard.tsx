@@ -1,6 +1,14 @@
 import { Card, CardContent, Typography } from "@mui/material";
 
-function WorkoutCard() {
+interface WorkoutCardProps {
+  title: string;
+  description: string;
+  exercises: string[];
+  duration: string;
+  createdBy: string;
+}
+
+function WorkoutCard(props: WorkoutCardProps) {
   return (
     <Card
       sx={{
@@ -9,7 +17,10 @@ function WorkoutCard() {
       }}
     >
       <CardContent>
-        <Typography>test</Typography>
+        <Typography>{props.title}</Typography>
+        <Typography>{props.description}</Typography>
+        <Typography>{props.duration}</Typography>
+        <Typography>{props.createdBy}</Typography>
       </CardContent>
     </Card>
   );

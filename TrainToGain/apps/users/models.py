@@ -60,6 +60,3 @@ class UserDetails(models.Model):
         MinValueValidator(limit_value=MIN_NUMER_VALUE, message=f"Value must be greater than {MIN_NUMER_VALUE}"),
         MaxValueValidator(limit_value=MAX_WEIGHT_NUMBER, message=f"Value must be less than {MAX_HEIGHT_NUMBER}")])
     picture = models.ImageField(upload_to='avatars/', blank=True, null=True)
-
-    workouts = models.ManyToManyField('workouts.Workout', blank=True)
-    fav_exercises = models.ManyToManyField('workouts.Exercise', blank=True)

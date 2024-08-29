@@ -15,3 +15,16 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.user.login == obj.createdBy:
             return True
         return False
+
+
+class IsOwner(permissions.BasePermission):
+    """
+    Checks if user is owner of the object.
+    """
+
+    def has_object_permission(self, request, view, obj):
+        # Terrible way of doing it
+        for x in obj:
+            if request.user != x.createdBy:
+                return False
+        return True

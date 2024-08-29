@@ -1,5 +1,3 @@
-
-
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view, parser_classes
 from rest_framework.exceptions import ValidationError
@@ -8,7 +6,7 @@ from rest_framework.response import Response
 
 from .custom_exception import CustomWorkoutExerciseException
 from .models import Exercise, Workout
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsOwner
 from .serializer import (CreateExerciseSerializer, CreateWorkoutSerializer,
                          GetExerciseSerializer, GetWorkoutSerializer)
 
@@ -92,6 +90,18 @@ class ListWorkoutView(generics.ListAPIView):
     queryset = Workout.objects.all()
     serializer_class = GetWorkoutSerializer
     permission_classes = [permissions.AllowAny]
+
+
+class ListSelfWorkoutView(generics.ListAPIView):
+    serializer_class = GetWorkoutSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwner]
+
+    def get_queryset(self):
+        user = self.request.user
+        workouts = Workout.objects.all().filter(createdBy=user)
+        if workouts.count() > 0:
+            self.check_object_permissions(self.request, workouts)
+        return workouts
 
 
 class DetailOrUpdateWorkoutView(generics.RetrieveUpdateDestroyAPIView):
