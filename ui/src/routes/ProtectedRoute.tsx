@@ -13,6 +13,7 @@ function ProtectedRoute() {
       navigate("/");
       toast.error("You need to be logged in to access this page");
     } else if (expired) {
+      sessionStorage.clear();
       navigate("/");
       toast.error("Your session has expired, please log in again");
     }

@@ -38,6 +38,7 @@ class Workout(models.Model):
         'Exercise', through='WorkoutDetails', blank=True)
     duration = models.DurationField()
     createdBy = models.ForeignKey(Entity, related_name="workouts", on_delete=models.CASCADE)
+    createdAt = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.name} {self.id}"

@@ -33,7 +33,7 @@ function SignIn() {
     );
     sessionStorage.setItem("token", res.data.access);
     toast.success("Successful action");
-    navigate("/user/UserPage");
+    navigate("/user/workouts");
   };
 
   const handleSignIn = (payload: any) => {

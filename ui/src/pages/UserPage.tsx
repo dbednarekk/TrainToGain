@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { decodeToken } from "react-jwt";
 import Navbar from "../components/Navbar";
 import UserDrawer from "../components/UserDrawer";
-import WorkoutsList from "../components/WorkoutsList";
 import { getSelfInfo } from "../utils/ApiCalls";
 interface TokenPayload {
   user_id: string;
@@ -34,9 +33,7 @@ function UserPage() {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-        >
-          <WorkoutsList />
-        </Box>
+        ></Box>
       </Box>
     </Box>
   );

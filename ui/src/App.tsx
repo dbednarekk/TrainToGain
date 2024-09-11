@@ -2,7 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import UserPage from "./pages/UserPage";
+import WorkoutListPage from "./pages/UserWorkoutsPage";
+import WorkoutDetailsPage from "./pages/WorkoutDetailsPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
@@ -13,7 +14,16 @@ function App() {
     {
       path: "/user",
       element: <ProtectedRoute />,
-      children: [{ path: "userPage", element: <UserPage /> }],
+      children: [
+        {
+          path: "workouts",
+          element: <WorkoutListPage />,
+        },
+        {
+          path: "workout/:id",
+          element: <WorkoutDetailsPage />,
+        },
+      ],
     },
   ]);
   return <RouterProvider router={router} />;
