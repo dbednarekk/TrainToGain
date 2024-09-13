@@ -35,6 +35,14 @@ export async function post(url: string, data: string, token?: string) {
     });
   }
 }
+export async function patch(url: string, data: string, token: string) {
+  return await axios.patch(DEFAULT_URL + url, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+}
 
 export async function getSelfInfo(token: string, id: string | undefined) {
   return await axios.get(DEFAULT_URL + `users/${id}/`, {

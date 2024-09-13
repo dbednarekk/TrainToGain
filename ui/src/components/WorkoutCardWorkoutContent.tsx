@@ -20,7 +20,7 @@ function WorkoutCardWorkoutContent(workoutObj: IWorkoutObject) {
   const workout = workoutObj.workout;
   return (
     <>
-      <Typography variant="h5" sx={{ pb: 2, fontWeight: "bold" }}>
+      <Typography variant="h5" sx={{ pb: 2 }}>
         {workout.name}
       </Typography>
       <Typography variant="body1" sx={{ pb: 1, fontStyle: "italic" }}>

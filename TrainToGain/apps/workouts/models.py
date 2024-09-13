@@ -24,7 +24,7 @@ class Exercise(models.Model):
     ]
     name = models.CharField(max_length=50, unique=True)
     muscle_type = models.CharField(max_length=20, choices=BODY_PARTS)
-    description = models.CharField(max_length=200, blank=True, null=True)
+
     picture = models.ImageField(upload_to='exercises/', blank=True, null=True)
 
     def __str__(self):
@@ -49,3 +49,4 @@ class WorkoutDetails(models.Model):
     exercise = models.ForeignKey(Exercise, related_name="details", on_delete=models.CASCADE)
     number_of_reps = models.PositiveIntegerField(blank=True, null=True)
     weight = models.PositiveIntegerField(blank=True, null=True)
+    description = models.CharField(max_length=200, blank=True, null=True)

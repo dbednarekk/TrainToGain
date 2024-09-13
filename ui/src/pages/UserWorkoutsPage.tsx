@@ -48,9 +48,16 @@ function WorkoutListPage() {
               </Grid2>
             ))
           ) : (
-            <Typography variant="h1" height="90vh">
-              No workouts found
-            </Typography>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              height="90vh"
+            >
+              <Typography variant="h3" color="textSecondary">
+                You don't have any workouts yet
+              </Typography>
+            </Box>
           )}
         </Grid2>
       </Box>

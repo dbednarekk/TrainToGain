@@ -15,27 +15,27 @@ import { useNavigate } from "react-router-dom";
 const userLinks = [
   {
     text: "Profile",
-    href: "profile/",
+    href: "/user/profile/",
     icon: SettingsAccessibilityIcon,
   },
   {
     text: "Exercises",
-    href: "exercises/",
+    href: "/user/exercises/",
     icon: FitnessCenterIcon,
   },
   {
     text: "Workouts",
-    href: "workouts/",
+    href: "/user/workouts/",
     icon: ChecklistIcon,
   },
   {
     text: "Routines",
-    href: "routines/",
+    href: "/user/routines/",
     icon: EventNoteIcon,
   },
   {
     text: "Statistics",
-    href: "statistics/",
+    href: "/user/statistics/",
     icon: AutoGraphIcon,
   },
 ];

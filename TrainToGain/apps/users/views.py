@@ -1,9 +1,11 @@
+from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from TrainToGain.apps.users.models import Entity
-from TrainToGain.apps.users.serializer import EntitySerializer, UserDetailsSerializer
+from TrainToGain.apps.users.serializer import EntitySerializer, UserDetailsSerializer, ChangePasswordSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -38,3 +40,13 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(status=204)
+
+
+class ChangePasswordView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        serializer = ChangePasswordSerializer(request.user, request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)

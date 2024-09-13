@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import UserProfilePage from "./pages/UserProfilePage";
 import WorkoutListPage from "./pages/UserWorkoutsPage";
 import WorkoutDetailsPage from "./pages/WorkoutDetailsPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -22,6 +23,10 @@ function App() {
         {
           path: "workout/:id",
           element: <WorkoutDetailsPage />,
+        },
+        {
+          path: "profile",
+          element: <UserProfilePage />,
         },
       ],
     },

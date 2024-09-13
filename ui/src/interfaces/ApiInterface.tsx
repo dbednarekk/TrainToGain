@@ -49,11 +49,11 @@ export interface IWorkoutDetails {
   exercise: string;
   number_of_reps: number;
   weight: number;
+  description: string;
 }
 export interface IExercise {
   id: string;
   name: string;
   picture: string;
-  description: string;
   muscle_type: string;
 }

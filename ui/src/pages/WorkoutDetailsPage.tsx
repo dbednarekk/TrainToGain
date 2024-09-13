@@ -31,6 +31,8 @@ function ExerciseDetailsRow({
   picture: string;
   exercise: Array<IWorkoutDetails>;
 }) {
+  console.log(exercise);
+  const description = exercise.find((ex) => ex.exercise === name)?.description;
   return (
     <Table
       sx={{
@@ -55,8 +57,10 @@ function ExerciseDetailsRow({
             <Typography variant="h5" sx={{ pt: 2 }}>
               {name}
             </Typography>
+            <Typography variant="subtitle1">{description}</Typography>
           </TableCell>
         </TableRow>
+
         <TableRow>
           <TableCell>
             <Typography

@@ -5,7 +5,7 @@ from .models import Exercise, Workout, WorkoutDetails
 
 # Register your models here.
 class ExerciseAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "muscle_type", "description"]
+    list_display = ["id", "name", "muscle_type"]
 
 
 class WorkoutDetailsInline(admin.TabularInline):
@@ -26,9 +26,9 @@ class WorkoutAdmin(admin.ModelAdmin):
 
 
 class WorkoutDetailsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["id", "workout", "exercise"]
 
 
 admin.site.register(Workout, WorkoutAdmin)
 admin.site.register(Exercise, ExerciseAdmin)
-admin.site.register(WorkoutDetails)
+admin.site.register(WorkoutDetails, WorkoutDetailsAdmin)
