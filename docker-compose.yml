@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   backend:
     build:
@@ -18,7 +18,10 @@ services:
       - custom_network
     ports:
       - "8000:8000"
+    volumes:
+      - ./TrainToGain:/app/TrainToGain
     restart: always
+
   frontend:
     build:
       context: .
@@ -31,12 +34,15 @@ services:
       - /bin/bash
       - -c
       - |
-        npm run dev --host
+        npm run dev --force
     networks:
       - custom_network
     ports:
       - "3000:3000"
+    volumes:
+      - ./ui/src:/app/src
     restart: always
+
   postgres:
     image: postgres:15
     networks:
