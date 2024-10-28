@@ -192,7 +192,7 @@ function UserProfilePage() {
                   </Box>
                 )}
                 {measurementsView && (
-                  <Typography variant="h4">Measurements</Typography>
+                  <Typography variant="h4">To be done.</Typography>
                 )}
               </Box>
             </Box>

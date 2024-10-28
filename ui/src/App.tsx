@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
+import PasswordReset from "./pages/PasswordReset";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import UserProfilePage from "./pages/UserProfilePage";
@@ -12,6 +13,7 @@ function App() {
     { path: "/", element: <Home /> },
     { path: "/signup", element: <SignUp /> },
     { path: "/signin", element: <SignIn /> },
+    { path: "/password-reset", element: <PasswordReset /> },
     {
       path: "/user",
       element: <ProtectedRoute />,
